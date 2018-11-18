@@ -47,7 +47,7 @@ def process_file(file):
                 values.append(word)
 
     
-    for word in values:
+    for word in values:                                                         #combine keys and values accordingly
         print "{"
         print ('"%s": "%s"') % (keys[(values.index(word) % len(keys))],values[values.index(word)])
         print "}"
