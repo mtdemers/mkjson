@@ -43,7 +43,7 @@ def process_file(file):
         else:
             keys.append(word)
 
-    info.pop(0)
+    info.pop(0)  # take out the first line containing the headers
     values = []  # blank list for parsed values
     for line in info:  # iterate through lines
         for word in line.split(sep,):  # iterate through words using delimiter
