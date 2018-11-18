@@ -48,11 +48,17 @@ def process_file(file):
             else:
                 values.append(word)
 
-    
+    count = 0
     for word in values:                                                         #combine keys and values accordingly
-        print "{"
-        print ('"%s": "%s"') % (keys[(values.index(word) % len(keys))],values[values.index(word)])
-        print "}"
+        if count == 0:                                                          #if first item in a row add open curly bracket
+            print "{" + ('"%s": "%s",') % (keys[(values.index(word) % len(keys))],values[values.index(word)])
+            count += 1
+        elif count == (len(keys) - 1):                                          #if last item in a row add closed curly bracket
+            print ('"%s": "%s"') % (keys[(values.index(word) % len(keys))],values[values.index(word)]) + " }"
+            count = 0
+        else:                                                                   #if in middle of a row no bracket
+            print ('"%s": "%s",') % (keys[(values.index(word) % len(keys))],values[values.index(word)])
+            count += 1        
 
     return
 get_file()
