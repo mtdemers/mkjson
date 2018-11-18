@@ -38,11 +38,11 @@ def process_file(file):
     
     info.pop(0)
     values = []                                                                 #blank list for parsed values
-    for line in info:
-        for word in line.split(sep,):
+    for line in info:                                                           #iterate through lines
+        for word in line.split(sep,):                                           #iterate through words using delimiter
             if nl in word:
-                head = word.split(nl,1)[0]
-                values.append(head)
+                head = word.split(nl,1)[0]                                      #separate new line delimiter
+                values.append(head)                                             #append word without delimiter
             else:
                 values.append(word)
 
