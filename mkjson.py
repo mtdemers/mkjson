@@ -67,7 +67,7 @@ def process_file(file):
             count = 0
         else:  # if in middle of a row no bracket
             print ('"%s": "%s",') % \
-                (keys[(values.index(word) % len(keys))]
+                (keys[(values.index(word) % len(keys))],
                  values[values.index(word)])
             count += 1
 
