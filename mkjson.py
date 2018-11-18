@@ -54,7 +54,7 @@ def process_file(file, newfile):
                 values.append(head)  # append word without delimiter
             else:
                 values.append(word)
-    n.write('{ "table":\n' + '\t{\n')  # initialize json
+    n.write('{ "table":\n' + '\t[\n')  # initialize json
     count = 0
     for word in values:  # combine keys and values accordingly
         if count == 0:  # if first item in a row add open curly bracket
@@ -62,17 +62,22 @@ def process_file(file, newfile):
                     (keys[(values.index(word) % len(keys))],
                      values[values.index(word)])+"\n")
             count += 1
+        elif (values.index(word) == (len(values)-1)) and count == (len(keys) - 1):
+            n.write(('\t\t' + '"%s": "%s"') %
+                    (keys[(values.index(word) % len(keys))],
+                    values[values.index(word)]) + " }" + "\n" + "\n")
+            n.write('\n\t]\n}')
         elif count == (len(keys) - 1):  # add closed curly for last item
             n.write(('\t\t' + '"%s": "%s"') %
                     (keys[(values.index(word) % len(keys))],
                     values[values.index(word)]) + " }," + "\n" + "\n")
             count = 0
+
         else:  # if in middle of a row no bracket
             n.write(('\t\t' + '"%s": "%s",') %
                     (keys[(values.index(word) % len(keys))],
                     values[values.index(word)]) + "\n")
             count += 1
-    n.write("\n }}")
     return
 get_file()
 print("Job completed")
