@@ -1,5 +1,7 @@
-#mkjson is designed to create json entries from a csv file
-#it might not be glorious, but it will be all mine
+"""
+mkjson is designed to create json entries from a csv file
+it might not be glorious, but it will be all mine
+"""
 
 def get_file():                                                                 #to get the file location
  print("Heyo, where's the fileo? ")
