@@ -1,0 +1,57 @@
+#mkjson is designed to create json entries from a csv file
+#it might not be glorious, but it will be all mine
+
+def get_file():                                                                 #to get the file location
+ print("Heyo, where's the fileo? ")
+ file_name = raw_input()
+
+ print("So you want me to make \'%s\' into a json file? (y/n)") % (file_name)   #verify that it's the right location
+ acknowledge = raw_input()
+ if acknowledge.lower() == 'y':
+     print("Alrighty, I'll do the thing!")
+     process_file(file_name)                                                    #run the processing
+     return
+ elif acknowledge.lower() == 'n':
+     print("Ok, idk why you input \'%s\' then, but whatev...") % (file_name)
+     get_file()                                                                 #user indicated wrong file name, ask for new input
+ else: 
+     print("Listen, bud, you gotta just type y or n.")
+     get_file()                                                                 #invalid input, ask for new input
+
+def process_file(file):
+    print ("opening \'%s\'") % (file)
+    info = []
+    f = open(file, "r")
+    for line in f:                                                              #iterate through lines
+        info.append(line)
+    headers = info[0]                                                           #separate first line into headers
+    keys = []                                                                   #blank list for parsed headers into keys
+    sep = ','                                                                   #comma delimiter
+    nl = '\r\n'                                                                 #new line delimiter
+
+    for word in headers.split(sep,):                                            #separate first row as headers
+        if nl in word:
+            head = word.split(nl,1)[0]                                          #remove \r\n newline indicators
+            keys.append(head)
+        else:
+            keys.append(word)
+    
+    info.pop(0)
+    values = []                                                                 #blank list for parsed values
+    for line in info:
+        for word in line.split(sep,):
+            if nl in word:
+                head = word.split(nl,1)[0]
+                values.append(head)
+            else:
+                values.append(word)
+
+    
+    for word in values:
+        print "{"
+        print ('"%s": "%s"') % (keys[(values.index(word) % len(keys))],values[values.index(word)])
+        print "}"
+
+    return
+get_file()
+
