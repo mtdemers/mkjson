@@ -7,22 +7,22 @@ the csv file must have an equal amount of headers and values (sequential)
 
 
 def get_file():  # to get the file location
-    print("Heyo, where's the fileo? ")
+    print("Please input the full file path of the *.csv file")
     file_name = raw_input()
 
-    print("So you want me to make \'%s\' into a json file? (y/n)") \
+    print("Is \'%s\' the correct location for the *.csv file? (y/n)") \
         % (file_name)  # verify that it's the right location
     acknowledge = raw_input()
     if acknowledge.lower() == 'y':
-        print("Where would you like the new file? ")
+        print("Input the full file path of the json file to be created: ")
         new_file = raw_input()
         process_file(file_name, new_file)  # run the processing
         return
     elif acknowledge.lower() == 'n':
-        print("Ok, idk why you input \'%s\' then, but whatev...") % (file_name)
+        print("\'%s'\ is incorrect, then. Restarting...") % (file_name)
         get_file()  # user indicated wrong file name, ask for new input
     else:
-        print("Listen, bud, you gotta just type y or n.")
+        print("Please confirm with just a "y" or "n". Restarting...")
         get_file()  # invalid input, ask for new input
 
 
