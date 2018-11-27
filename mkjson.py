@@ -27,7 +27,7 @@ def get_file():  # to get the file location
 
 
 def process_file(file, newfile):
-    print ("opening \'%s\'") % (file)
+    print ("Opening \'%s\'...") % (file)
     info = []
     f = open(file, "r")
     n = open(newfile, "w")
@@ -78,6 +78,7 @@ def process_file(file, newfile):
                     (keys[(values.index(word) % len(keys))],
                     values[values.index(word)]) + "\n")
             count += 1
+    print("Job completed. Check out your new file at \'%s'\ ") % (newfile)
     return
 get_file()
-print("Job completed")
+
