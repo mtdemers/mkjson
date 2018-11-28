@@ -22,7 +22,7 @@ def get_file():  # to get the file location
         print("\'%s'\ is incorrect, then. Restarting...") % (file_name)
         get_file()  # user indicated wrong file name, ask for new input
     else:
-        print("Please confirm with just a "y" or "n". Restarting...")
+        print("Please confirm with just a y or n. Restarting...")
         get_file()  # invalid input, ask for new input
 
 
@@ -35,7 +35,7 @@ def process_file(file, newfile):
         info.append(line)
     headers = info[0]  # separate first line into headers
     keys = []  # blank list for parsed headers into keys
-    sep = ','  # comma delimiter
+    sep = '\t'  # tab delimiter
     nl = '\r\n'  # new line delimiter
 
     for word in headers.split(sep,):  # separate first row as headers
@@ -81,4 +81,3 @@ def process_file(file, newfile):
     print("Job completed. Check out your new file at \'%s'\ ") % (newfile)
     return
 get_file()
-
