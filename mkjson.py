@@ -1,16 +1,16 @@
 """
 mkjson is designed to create json entries from a csv file
 it might not be glorious, but it will be all mine
-you must know the full filepath for the csv file
-the csv file must have an equal amount of headers and values (sequential)
+you must know the full filepath for the tsv file
+the tsv file must have an equal amount of headers and values (sequential)
 """
 
 
 def get_file():  # to get the file location
-    print("Please input the full file path of the *.csv file")
+    print("Please input the full file path of the *.tsv file")
     file_name = raw_input()
 
-    print("Is \'%s\' the correct location for the *.csv file? (y/n)") \
+    print("Is \'%s\' the correct location for the *.tsv file? (y/n)") \
         % (file_name)  # verify that it's the right location
     acknowledge = raw_input()
     if acknowledge.lower() == 'y':
