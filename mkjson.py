@@ -54,6 +54,7 @@ def process_file(file, newfile):
                 values.append(head)  # append word without delimiter
             else:
                 values.append(word)
+            info.pop(0)  # remove line, hope this works
     n.write('{ "table":\n' + '\t[\n')  # initialize json
     count = 0
     for word in values:  # combine keys and values accordingly
