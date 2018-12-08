@@ -1,13 +1,12 @@
 """
-mkjson is designed to create json entries from a csv file
+mkjson is designed to create json entries from a tsv file
 it might not be glorious, but it will be all mine
 you must know the full filepath for the tsv file
 the tsv file must have an equal amount of headers and values (sequential)
-"""
-
 
 def get_file():  # to get the file location
     print("Please input the full file path of the *.tsv file")
+
     file_name = raw_input()
 
     print("Is \'%s\' the correct location for the *.tsv file? (y/n)") \
@@ -15,7 +14,7 @@ def get_file():  # to get the file location
     acknowledge = raw_input()
     if acknowledge.lower() == 'y':
         print("Input the full file path of the json file to be created: ")
-        new_file = raw_input()
+       new_file = raw_input()
         process_file(file_name, new_file)  # run the processing
         return
     elif acknowledge.lower() == 'n':
@@ -24,12 +23,16 @@ def get_file():  # to get the file location
     else:
         print("Please confirm with just a y or n. Restarting...")
         get_file()  # invalid input, ask for new input
+"""
 
+import sys
+oldfile = sys.argv[1]
+newfile = sys.argv[2]
 
-def process_file(file, newfile):
-    print ("Opening \'%s\'...") % (file)
+def process_file(oldfile, newfile):
+    print ("Opening \'%s\'...") % (oldfile)
     info = []
-    f = open(file, "r")
+    f = open(oldfile, "r")
     n = open(newfile, "w")
     for line in f:  # iterate through lines
         info.append(line)
@@ -81,4 +84,5 @@ def process_file(file, newfile):
             count += 1
     print("Job completed. Check out your new file at \'%s'\ ") % (newfile)
     return
-get_file()
+
+process_file(oldfile, newfile)
