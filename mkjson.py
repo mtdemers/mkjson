@@ -29,6 +29,7 @@ import sys
 oldfile = sys.argv[1]
 newfile = sys.argv[2]
 
+
 def process_file(oldfile, newfile):
     print ("Opening \'%s\'...") % (oldfile)
     info = []
@@ -85,4 +86,8 @@ def process_file(oldfile, newfile):
     print("Job completed. Check out your new file at \'%s'\ ") % (newfile)
     return
 
-process_file(oldfile, newfile)
+if newfile == null:
+    print("mkjson usage:\n")
+    print("mkjson [tsv file location] [new json file location]")
+else:
+    process_file(oldfile, newfile)
