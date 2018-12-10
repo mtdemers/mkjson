@@ -25,9 +25,8 @@ def get_file():  # to get the file location
         get_file()  # invalid input, ask for new input
 """
 
+import getopt
 import sys
-oldfile = sys.argv[1]
-newfile = sys.argv[2]
 
 
 def process_file(oldfile, newfile):
@@ -86,8 +85,24 @@ def process_file(oldfile, newfile):
     print("Job completed. Check out your new file at \'%s'\ ") % (newfile)
     return
 
-if newfile == null:
-    print("mkjson usage:\n")
-    print("mkjson [tsv file location] [new json file location]")
-else:
-    process_file(oldfile, newfile)
+
+def main(argv):
+    inputfile = ''
+    outputfile = ''
+    try:
+        opts, args = getopt.getopt(argv, "hi:o", ["ifile=", "ofile="])
+    except getopt.GetoptError:
+        print 'mkjson.py -i <inputfile.tsv> -o <outputfile.json>'
+        sys.exit(2)
+        for opt, arg in opts:
+            if opt == '-h':
+                print 'mkjson.py -i <inputfile.tsv> -o <outputfile.json>'
+                sys.exit()
+            elif opt in ("-i", "--ifile"):
+                inputfile = arg
+            elif opt in ("-o", "--ofile"):
+                outputfile = arg
+    return (inputfile, outputfile)
+if __name__ == "__main__":
+    main(sys.argv[1:])
+    process_file(inputfile, outputfile)
